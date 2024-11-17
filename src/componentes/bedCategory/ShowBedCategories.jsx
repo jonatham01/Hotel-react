@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 
-export const ShowBedCategories = ({list,  setValues}) => {
+export const ShowBedCategories = ({list,  setValues,setbedCategories}) => {
 
   const onDelete = async (event, id) => {
     try {

@@ -20,7 +20,7 @@ export const BedCategory = () => {
         colorError:false,
         fetchError:''
     });
-    const [classValue, setclassValue] = useState({
+    const [classValue,  setclassValue] = useState({
         'okd' : 's',
         'tipo-habitaciones':'ok'
     })
@@ -42,28 +42,33 @@ export const BedCategory = () => {
         }
     }, []);
 
-    const onUpdate = async (event, id, newValue) => {
+    const onUpdate = async (id, newValue) => {
         try {
-            event.preventDefault();
+            console.log(newValue);
             const url = `http://localhost:8090/api/categories/put/${id}`;
             const response = await fetch(url, {
-              headers: {
-                "Content-Type": "application/json", 
-              },
-               method: "PUT",
-               body: JSON.stringify(newValue) 
-              });
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "PUT",
+                body: JSON.stringify(newValue)
+            });
+            console.log(response);
     
             if (!response.ok) throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+            
             const updatedBedCategory = await response.json();
-            setbedCategories(list.map(bedCategoty=>{
-              if(bedCategoty.id !== id){return updatedBedCategory;}
-              return bedCategoty;
-            }));
+            console.log("respuesta");
+            console.log(updatedBedCategory);
+    
+            // Aquí aseguramos que actualizamos correctamente el estado con el nuevo objeto actualizado
+            setbedCategories(bedCategories.map(bedCategory => 
+                bedCategory.id === id ? updatedBedCategory : bedCategory
+            ));
         } catch (error) {
-            console.error("Error al eliminar la categoría:", error.message);
+            console.error("Error al modificar la categoría:", error.message);
         }
-      };
+    };
 
     
        
@@ -94,8 +99,14 @@ export const BedCategory = () => {
 
             <main>
                 <div className="main-content">
-                    <CreateBedCategory  onCreate={setbedCategories} formValues={formValues} setValues={setValues} handleChange={handleChange} />
-                    <ShowBedCategories list={bedCategories}  setValues={setValues} />
+                    <CreateBedCategory  
+                    onCreate={setbedCategories} 
+                    formValues={formValues} 
+                    setValues={setValues} 
+                    handleChange={handleChange}
+                    onUpdate={onUpdate} 
+                    />
+                    <ShowBedCategories list={bedCategories}  setValues={setValues} setbedCategories={setbedCategories} />
                 </div>
             </main>
         </div>

@@ -3,7 +3,7 @@ import useForm from '../../hooks/useForm'
 
 //Este componente maneja todo el formulario de creacion de una nueva categoria de cama
 // en los props desestructuramos el metodo que se envia en onCreate
-export const CreateBedCategory = ( {onCreate, formValues,setValues,handleChange} ) => {
+export const CreateBedCategory = ( {onCreate, formValues,setValues,handleChange, onUpdate} ) => {
 
   const emptyForm = {
         id:null,
@@ -112,7 +112,7 @@ export const CreateBedCategory = ( {onCreate, formValues,setValues,handleChange}
       <div className="box-title">
         <p>Registrar tipo de cama</p>
       </div>
-      <form onSubmit={handleSubmit} className='box-content form-create'>
+      <form className='box-content form-create'>
           <div className="item-form-create">
             <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               Tipo de cama:
@@ -169,10 +169,26 @@ export const CreateBedCategory = ( {onCreate, formValues,setValues,handleChange}
                 onChange={handleChange}
               />
          </div>
+
         
-        <div className="item-form-create">
-          <label ></label>
-          <button type="submit">Enviar</button>
+        
+         <div className="item-form-create">
+          <label></label>
+          {formValues.id == null && <button onClick={handleSubmit} >Guardar nuevo</button>}
+          {formValues.id != null && 
+            <button onClick={(event) => {
+              event.preventDefault(); // Previene el comportamiento por defecto del formulario.
+              onUpdate(formValues.id, {
+                "id":formValues.id,
+                "kind":formValues.kind,
+                "measure":formValues.measure,
+                "color":formValues.color,
+                "url":formValues.url
+              }); // Llama a `onDelete` pasando el evento y el ID.
+            }}>
+            Editar registro
+            </button>
+          }
         </div>
       </form>
     </div>
