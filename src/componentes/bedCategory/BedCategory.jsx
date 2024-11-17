@@ -6,7 +6,9 @@ import useForm from '../../hooks/useForm';
 
 export const BedCategory = () => {
 
+    //manejar del estado del listado todas las categorias
     const [bedCategories, setbedCategories] = useState([]);
+
     //utilizamos el hook para manejar los useState de cada parte del formulario
     const [formValues, handleChange,setValues] = useForm({
         id:null,
@@ -20,31 +22,28 @@ export const BedCategory = () => {
         colorError:false,
         fetchError:''
     });
-    const [classValue,  setclassValue] = useState({
-        'okd' : 's',
-        'tipo-habitaciones':'ok'
-    })
-    const param = "tipo-habitaciones";
-   // if(param=="tipo-habitaciones") setclassValue(classValue);
 
    const findCategories = async () => {
     const url = `http://localhost:8090/api/categories/find/all`; 
     const response = await fetch(url);
     if (!response.ok) throw new Error("Error en la solicitud");
     const data = await response.json();
-    setbedCategories(data); // Actualiza el estado directamente con los datos
-};
+    // Actualiza el estado directamente con los datos
+    setbedCategories(data); 
+    };
 
-    useEffect(() => {
-        // Ejecuta findCategories solo si bedCategories está vacío
+
+    // Ejecuta findCategories solo si bedCategories está vacío
+    useEffect(() => {  
         if (bedCategories.length === 0) {
             findCategories();
         }
     }, []);
 
-    const onUpdate = async (id, newValue) => {
+
+    //metodo para actualizar el tipo de cama en la bd
+    const onUpdate = async (id, newValue) => { 
         try {
-            console.log(newValue);
             const url = `http://localhost:8090/api/categories/put/${id}`;
             const response = await fetch(url, {
                 headers: {
@@ -53,25 +52,18 @@ export const BedCategory = () => {
                 method: "PUT",
                 body: JSON.stringify(newValue)
             });
-            console.log(response);
-    
             if (!response.ok) throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
-            
             const updatedBedCategory = await response.json();
-            console.log("respuesta");
-            console.log(updatedBedCategory);
-    
-            // Aquí aseguramos que actualizamos correctamente el estado con el nuevo objeto actualizado
+        
             setbedCategories(bedCategories.map(bedCategory => 
                 bedCategory.id === id ? updatedBedCategory : bedCategory
             ));
+            setValues({...formValues,id:null});
         } catch (error) {
             console.error("Error al modificar la categoría:", error.message);
         }
     };
 
-    
-       
     
     return (
         <>

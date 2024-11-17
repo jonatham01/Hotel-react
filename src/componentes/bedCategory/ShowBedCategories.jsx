@@ -16,12 +16,6 @@ export const ShowBedCategories = ({list,  setValues,setbedCategories}) => {
   };
 
   const onSelect =  (newValue) => {
-    console.log({...newValue,
-      kindError: false,
-      measureError:false,
-      urlErrror:false,
-      colorError:false,
-      fetchError:''});
         
         setValues({...newValue,
           kindError: false,
