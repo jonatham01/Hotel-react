@@ -1,0 +1,141 @@
+.top-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px 20px;
+   
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgb(201, 201, 201);
+
+}
+.web-name{
+    color: blue;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+
+}
+.options-right{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.user{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0;
+    gap: 1px;
+    align-items: center;
+}
+.user >p{
+    padding: 0;
+    margin: 0;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: 20% 1fr;
+}
+
+.left-menu{
+    
+    background-color: white;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    border-right: 1px solid rgb(201, 201, 201);
+    margin: 0;
+    row-gap: 8px;
+}
+.left-menu>p{
+    padding: 8px 20px;
+    margin: 0;
+}
+.on-left-menu{
+    background-color: blanchedalmond;
+}
+
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    padding:  0;
+    margin: 0;
+    background-color: gainsboro;
+    height: 100%;
+    width:100%;
+}
+.main-content{
+    padding:28px 80px ;
+    background-color: gainsboro;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+}
+.box{
+    background-color: white;
+    padding: 0;
+    margin: 0;
+}
+.box-title{
+    background-color: rgb(93, 93, 93);
+    padding: 8px 20px;
+    color: white;
+}
+.box-content{
+    padding: 40px 20px;
+}
+.form-create{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    align-items: end;
+}
+.form-create> .item-form-create{
+    display: flex;
+    flex-direction: column;
+}
+.item-form-create>input,.item-form-create>select {
+    padding: 8px;
+}
+
+
+.item-form-create>button{
+    padding: 8px;
+    margin: 0;
+   
+    width: 100%;
+}
+
+table{
+    width: 100%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td{
+    padding: 8px 28px;
+}
+td>img{
+    width: 100px;
+}
+td> .button{
+    padding: 20px;
+    margin: 0 20px;
+}
+label{
+    display: 'flex';
+    align-items: 'center';
+    gap: '8px';
+}
+.error-message{
+    margin: 0;
+    color: red;
+}
