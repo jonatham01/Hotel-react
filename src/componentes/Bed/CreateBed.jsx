@@ -29,7 +29,7 @@ export const CreateBed = ({
     
     
     const createNewBed= async(event)=> {
-        console.log("ok")
+        
         event.preventDefault();
         validateForm();
         if(!validateForm()){

@@ -78,10 +78,26 @@ main{
     flex-direction: column;
     row-gap: 40px;
 }
+.main-panel{
+    padding:28px 80px ;
+    background-color: gainsboro;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between;
+    gap: 40px;
+}
+.no-underline {
+    text-decoration: none;
+    color: black;
+  }
 .box{
     background-color: white;
     padding: 0;
     margin: 0;
+}
+.box> h1 {
+    text-align: center;
 }
 .box-title{
     background-color: rgb(93, 93, 93);

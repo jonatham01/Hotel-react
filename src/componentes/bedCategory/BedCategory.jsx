@@ -81,12 +81,11 @@ export const BedCategory = () => {
 
         <div className="content">
             <header className="left-menu">
-                    <p >Panel</p>
-                    <p >Tipo de camas</p>
-                    <p>Camas</p>
-                    <p>Habitaciones</p>
-                    <p className='on-left-menu'>Tipo de habitaciones</p>
-                
+                <p className='on-left-menu'><Link className='no-underline' to="/">Panel</Link></p>
+                <p ><Link className='no-underline' to="/tipocamas">Tipos de camas</Link></p>
+                <p><Link className='no-underline' to="/camas">Camas</Link></p>
+                <p>Habitaciones</p>
+                <p ><Link className='no-underline' to="/tipohabitaciones">Tipos de habitaciones</Link></p>
             </header>
 
             <main>
